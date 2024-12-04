@@ -1,7 +1,31 @@
 CREATE DATABASE IF NOT EXISTS db_salaoSenac;
 SHOW DATABASES;
-use db_salaoSenac;
-select database();
+USE db_salaoSenac;
+SELECT DATABASE();
+
+-- Tabela Profissional (Criação antes das outras que referenciam ela)
+CREATE TABLE IF NOT EXISTS tbl_profissional (
+    cpf CHAR(11) PRIMARY KEY,
+    especialidade VARCHAR(45) NOT NULL,
+    nome VARCHAR(45) NOT NULL,
+    email VARCHAR(255),
+    estadoCivil VARCHAR(10) NOT NULL,
+    nomeSocial VARCHAR(45),
+    dataNasc DATE NOT NULL,
+    telefone VARCHAR(15) NOT NULL UNIQUE,
+    cargaHoraria TIME NOT NULL,
+    sexo CHAR(1),
+    comissao DECIMAL(8,2) NOT NULL,
+    salario DECIMAL(8,2) NOT NULL
+);
+
+-- Tabela Cliente (Criação antes das outras que referenciam ela)
+CREATE TABLE IF NOT EXISTS tbl_cliente (
+    cpf CHAR(11) PRIMARY KEY,
+    nome VARCHAR(45) NOT NULL,
+    nomeSocial VARCHAR(45),
+    email VARCHAR(45) NOT NULL UNIQUE
+);
 
 -- Tabela Funcionario
 CREATE TABLE IF NOT EXISTS tbl_funcionario (
@@ -103,28 +127,4 @@ CREATE TABLE IF NOT EXISTS tbl_formPag (
     FOREIGN KEY (registroServico_idregistroServico) REFERENCES tbl_registroServico(idregistroServico)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-);
-
--- Tabela Profissional
-CREATE TABLE IF NOT EXISTS tbl_profissional (
-    cpf CHAR(11) PRIMARY KEY,
-    especialidade VARCHAR(45) NOT NULL,
-    nome VARCHAR(45) NOT NULL,
-    email VARCHAR(255),
-    estadoCivil VARCHAR(10) NOT NULL,
-    nomeSocial VARCHAR(45),
-    dataNasc DATE NOT NULL,
-    telefone VARCHAR(15) NOT NULL UNIQUE,
-    cargaHoraria TIME NOT NULL,
-    sexo CHAR(1),
-    comissao DECIMAL(8,2) NOT NULL,
-    salario DECIMAL(8,2) NOT NULL
-);
-
-
-CREATE TABLE IF NOT EXISTS tbl_cliente (
-    cpf CHAR(11) PRIMARY KEY,
-    nome VARCHAR(45) NOT NULL,
-    nomeSocial VARCHAR(45),
-    email VARCHAR(45) NOT NULL UNIQUE
 );
