@@ -136,6 +136,8 @@ VALUES
 ('85987109999', NULL, NULL, '66666666666'),
 ('85900345999', NULL, NULL, '77777777777');
 
+truncate table tbl_telefone;
+
 INSERT INTO tbl_formPag (valorPago, tipo, registroServico_idregistroServico)
 VALUES
 (100.00, 'Cartão de Crédito', 1),
